@@ -1,0 +1,31 @@
+bot:
+  token: 626058427:AAEb6AZAasJi73Iu4qCBSNTeS2gAO83pJfg
+  username: aparts_monitoring_bot
+
+chat:
+  id:
+    anton: 127527969
+    anuta: 149893381
+
+server:
+  port: 9999
+  servlet:
+    context-path: /bot
+
+management:
+  endpoints:
+    web:
+      base-path: /management
+
+
+
+
+
+
+pik-api:
+  server: https://api.pik.ru
+  endpoint: /v1/bulk/chessplan?new=1&block_id=158&types=1,2
+
+logging:
+  level:
+    root: info

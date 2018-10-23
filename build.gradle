@@ -1,0 +1,58 @@
+group 'com.gman.telegram'
+version '1.0'
+
+
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url 'http://mvn/artifactory/public/' }
+        maven { url 'http://mvn/artifactory/simple/jcenter/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.6.RELEASE"
+    }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'maven'
+apply plugin: 'io.spring.dependency-management'
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
+repositories {
+    mavenLocal()
+    maven { url "http://mvn/artifactory/public/" }
+    maven { url "http://mvn/artifactory/simple/jcenter/" }
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.boot:spring-boot-dependencies:2.0.5.RELEASE'
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Finchley.RELEASE'
+    }
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    compile 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    compile 'io.github.openfeign:feign-jackson'
+    compile "org.telegram:telegrambots-spring-boot-starter:4.1"
+    compileOnly 'org.projectlombok:lombok:1.18.2'
+    testCompile "org.springframework.boot:spring-boot-starter-test"
+    testCompile "junit:junit"
+}
